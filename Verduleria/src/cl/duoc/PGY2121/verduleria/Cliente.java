@@ -68,6 +68,21 @@ public class Cliente {
             }
         }
     }
+    
+    public boolean validatePhone(boolean esClienteValido, Scanner s, Cliente cliente) throws NumberFormatException {
+        esClienteValido = false;
+        while(!esClienteValido){
+            System.out.println("Ingrese su numero de telefono:");
+            String telefono = s.nextLine();
+            if(telefono.length() == 8){
+                esClienteValido = true;
+                cliente.setTelefono(Long.parseLong(telefono));
+            }else{
+                System.out.println("El número telefónico debe tener 8 digitos");
+            }
+        }
+        return esClienteValido;
+    }
 
     public int getRun() {
         return run;

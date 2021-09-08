@@ -34,17 +34,7 @@ public class Verduleria {
         boolean esClienteValido = false;
         cliente.validateRun(esClienteValido, s, cliente);
         
-        esClienteValido = false;
-        while(!esClienteValido){
-            System.out.println("Ingrese su numero de telefono:");
-            String telefono = s.nextLine();
-            if(telefono.length() == 8){
-                esClienteValido = true;
-                cliente.setTelefono(Long.parseLong(telefono));
-            }else{
-                System.out.println("El número telefónico debe tener 8 digitos");
-            }
-        }
+        esClienteValido = cliente.validatePhone(esClienteValido, s, cliente);
         System.out.println("Ingrese su direccion:");
         String direccion = s.nextLine();
         cliente.setDireccion(direccion);
@@ -62,21 +52,56 @@ public class Verduleria {
             if(opcion == 1){
                 
                 System.out.println("Ingrese el producto que necesita");
-                Producto zanahoria = new Producto(1000, "Verdura","Zanahoria", 850, 1000);
-                Producto pepino = new Producto(1000, "Verdura","Pepino", 579, 1);
-                Producto pinha = new Producto(1000, "Fruta","Piña", 1789, 1);
-                Producto arandano = new Producto(1000, "Fruta","Arandanos", 1490, 1);
+                Producto zanahoria = new Producto(1000, "Verdura","Zanahoria", 890, 1000);
+                Producto pepino = new Producto(1010, "Verdura","Pepino", 579, 1);
+                Producto pinha = new Producto(5000, "Fruta","Piña", 900, 1);
+                Producto arandano = new Producto(5005, "Fruta","Arandanos", 1490, 125);
                 System.out.println("1.- " + zanahoria.toString());
                 System.out.println("2.- " + pepino.toString());
                 System.out.println("3.- " + pinha.toString());
                 System.out.println("4.- " + arandano.toString());
                 int selectedProduct = s.nextInt();
                 if(selectedProduct == 1){
+                    System.out.println("Ingrese la cantidad en gramos: ");
+                    int cantidad = s.nextInt();
+                    s.nextLine();
                     solicitud.agregarProducto(zanahoria.getDescripcion());
-                    int precio = (int) (solicitud.getTotal() + zanahoria.getPrecio()); 
+                    double precioGramos = zanahoria.getPrecio() * cantidad / zanahoria.getTipoCantidad();
+                    int precio = (int) (solicitud.getTotal() + precioGramos); 
+                    solicitud.setTotal(precio);
+                }
+                if(selectedProduct == 2){
+                    System.out.println("Ingrese la cantidad: ");
+                    int cantidad = s.nextInt();
+                    s.nextLine();
+                    solicitud.agregarProducto(pepino.getDescripcion());
+                    int precio = (int) (solicitud.getTotal() + pepino.getPrecio()); 
+                    solicitud.setTotal(precio * cantidad);
+                }
+                
+                if(selectedProduct == 3){
+                    System.out.println("Ingrese la cantidad: ");
+                    int cantidad = s.nextInt();
+                    s.nextLine();
+                    solicitud.agregarProducto(pinha.getDescripcion());
+                    int precio = (int) (solicitud.getTotal() + pinha.getPrecio()); 
+                    solicitud.setTotal(precio * cantidad);
+                }
+                
+                if(selectedProduct == 4){
+                    System.out.println("Ingrese la cantidad en gramos: ");
+                    int cantidad = s.nextInt();
+                    s.nextLine();
+                    solicitud.agregarProducto(arandano.getDescripcion());
+                    double precioGramos = arandano.getPrecio() * cantidad / arandano.getTipoCantidad();
+                    int precio = (int) (solicitud.getTotal() + precioGramos); 
                     solicitud.setTotal(precio);
                 }
                 
+            }
+            
+            if(opcion == 2){
+                solicitud.mostrarDetallePedido(solicitud);
             }
             
         }
@@ -92,9 +117,5 @@ public class Verduleria {
         
         solicitud.mostrarDetallePedido(solicitud);
     }
-
-    
-
-    
     
 }
