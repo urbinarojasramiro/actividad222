@@ -41,9 +41,8 @@ public class Solicitud {
         System.out.println("Estimado " + solicitud.getCliente()+" Su pedido es el siguiete:");
         System.out.println("Numero de pedido: " + solicitud.getNumero());
         System.out.println("Fecha de compra: " + solicitud.getFecha());
-        System.out.println("Sus productos son: ");
         String[] productoArray = solicitud.getProductos().split(";");
-        for (int i = 0; i < productoArray.length; i++) {
+        for(int i = 0; i < productoArray.length; i++) {
             System.out.println(productoArray[i]);
         }
         System.out.println("Total Compra: " + solicitud.getTotal());
@@ -56,8 +55,8 @@ public class Solicitud {
         }
     }
     
-    public long crearNumeroSolicitud(long numeroBase){
-        return numeroBase++;
+    public void crearNumeroSolicitud(long numeroBase){
+        this.numero = numeroBase + 1;
     }
 
     public long getNumero() {

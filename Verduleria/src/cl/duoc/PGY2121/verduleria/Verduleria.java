@@ -44,6 +44,8 @@ public class Verduleria {
         Solicitud solicitud = new Solicitud();
         solicitud.crearNumeroSolicitud(numeroBase);
         solicitud.setFecha(date);
+        solicitud.setCliente(cliente.getNombre());
+        System.out.println("Bienvenido " + cliente.getNombre());
         while(opcion != 5){
             System.out.println("1.-Ingresar productos");
             System.out.println("2.-Ver detalle de pedido");
