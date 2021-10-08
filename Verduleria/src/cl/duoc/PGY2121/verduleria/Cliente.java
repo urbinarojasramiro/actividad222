@@ -5,6 +5,7 @@
  */
 package cl.duoc.PGY2121.verduleria;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,6 +19,7 @@ public class Cliente {
     private String mail;
     private String direccion;
     private long telefono;
+    private List<String> lista;
 
     public Cliente(int run, String dv, String nombre, String mail, String direccion, long telefono) {
         this.run = run;
@@ -130,6 +132,14 @@ public class Cliente {
 
     public void setTelefono(long telefono) {
         this.telefono = telefono;
+    }
+
+    public List<String> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<String> lista) {
+        this.lista = lista;
     }
     
     
